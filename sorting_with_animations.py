@@ -36,6 +36,26 @@ def mergeSort(arr, start, end):
     yield from final_merge(arr, start, mid, end)
     yield arr
 
+def quickSort(arr, start, end):
+    """ Quick sort implementation"""
+
+    if end <= start:
+        return arr
+    
+    pivot = arr[end]
+    indeks = start
+
+    for i in range(start, end):
+        if arr[i] < pivot:
+            fun_swap(arr,i,indeks)
+            indeks += 1
+        yield arr
+    fun_swap(arr, end, indeks)
+    yield arr
+
+    yield from quickSort(arr, start, indeks - 1)
+    yield from quickSort(arr, indeks + 1, end)
+
 
 
 
@@ -112,7 +132,7 @@ if __name__ == "__main__":
         )""" #można odkomentować i sprobowac jak wyglada dla bubble
     animations = anim.FuncAnimation(
         fig, func=next_frame, fargs=(bar_, iterations), 
-        frames=mergeSort(arr, 0, number_of_int-1), interval = 10, repeat = False
+        frames=quickSort(arr, 0, number_of_int-1), interval = 10, repeat = False
         )
     plt.show()
 

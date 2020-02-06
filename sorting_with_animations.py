@@ -57,6 +57,15 @@ def quickSort(arr, start, end):
     yield from quickSort(arr, indeks + 1, end)
 
 
+def insertionSort(arr):
+    """ Intertion sort implementation"""
+
+    for i in range (1, len(arr)):
+        k = i
+        while k > 0 and arr[k - 1] > arr[k]:
+            fun_swap(arr, k, k - 1)
+            k -= 1
+            yield arr
 
 
 
@@ -126,14 +135,14 @@ if __name__ == "__main__":
     text = ax.text( 0.03, 1, "", transform=ax.transAxes)
 
     iterations = [0]
-    """animations = anim.FuncAnimation(
-        fig, func=next_frame, fargs=(bar_, iterations), 
-        frames=bubbleSort(arr), interval = 10, repeat = False
-        )""" #można odkomentować i sprobowac jak wyglada dla bubble
     animations = anim.FuncAnimation(
         fig, func=next_frame, fargs=(bar_, iterations), 
+        frames=insertionSort(arr), interval = 10, repeat = False
+        ) #można odkomentować i sprobowac jak wyglada dla bubble
+    """animations = anim.FuncAnimation(
+        fig, func=next_frame, fargs=(bar_, iterations), 
         frames=quickSort(arr, 0, number_of_int-1), interval = 10, repeat = False
-        )
+        )"""
     plt.show()
 
 

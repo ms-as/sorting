@@ -153,20 +153,40 @@ def next_frame(arr, poles, iterations):
     for poles, value in zip(poles, arr):
         poles.set_height(value)
     iterations[0] += 1
-    text.set_text("# of operations: {}".format(iterations[0])) 
+    text.set_text("Number of operations: {}".format(iterations[0])) 
 
 
 if __name__ == "__main__":
 
     number_of_int = int(input("Enter number: "))
+    sort_method = input("Enter sorting method:\n(b)ubble\n(m)erge \
+        \n(q)uick\n(i)nsertion\n(s)election\n(c)octail\n")
     
     arr = [x+1 for x in range(number_of_int)]
     np.random.randint(time.time())
-
     np.random.shuffle(arr)
 
+    if sort_method == "b":
+        title = "Bubble_Sort"
+        fra = bubbleSort(arr)
+    elif sort_method == "m":
+        title = "Merge sort"
+        fra = mergeSort(arr, 0, number_of_int - 1)
+    elif sort_method == "q":
+        title = "QuickSort"
+        fra = quickSort(arr, 0, number_of_int - 1)
+    elif sort_method == "i":
+        title = "Insertion_Sort"
+        fra = insertionSort(arr)
+    elif sort_method == "s":
+        title = "Selection_Sort"
+        fra = selectionSort(arr)
+    else:
+        title = "Coctail_Sort"
+        fra = coctailSort(arr, 0, number_of_int - 1)
+
     fig, ax = plt.subplots()
-    ax.set_title("BubbleSort")
+    ax.set_title(title)
 
     bar_ = ax.bar(range(len(arr)), arr, align="edge")
 
@@ -176,15 +196,9 @@ if __name__ == "__main__":
     text = ax.text( 0.03, 1, "", transform=ax.transAxes)
 
     iterations = [0]
-    """animations = anim.FuncAnimation(
-        fig, func=next_frame, fargs=(bar_, iterations), 
-        frames=selectionSort(arr), interval = 10, repeat = False
-        ) #można odkomentować i sprobowac jak wyglada dla bubble"""
     animations = anim.FuncAnimation(
         fig, func=next_frame, fargs=(bar_, iterations), 
-        frames=coctailSort(arr, 0, number_of_int-1), interval = 10, repeat = False
+        frames=fra, interval = 10, repeat = False
         )
+    animations.save("{}.gif".format(title))
     plt.show()
-
-
-

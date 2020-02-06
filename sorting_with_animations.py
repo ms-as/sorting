@@ -198,7 +198,7 @@ if __name__ == "__main__":
     iterations = [0]
     animations = anim.FuncAnimation(
         fig, func=next_frame, fargs=(bar_, iterations), 
-        frames=fra, interval = 10, repeat = False
+        frames=fra, interval = 1, repeat = False
         )
-    animations.save("{}.gif".format(title))
+    animations.save("{}.gif".format(title), writer = 'imagemagick')
     plt.show()

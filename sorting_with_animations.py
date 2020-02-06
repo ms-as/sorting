@@ -67,8 +67,50 @@ def insertionSort(arr):
             k -= 1
             yield arr
 
+def selectionSort(arr):
+    """ Selection sort implementation"""
+    if len(arr) == 1:
+        return arr
+    
+    for i in range(len(arr)):
+        minimum = arr[i]
+        minimum_index = i
+        for j in range (i, len(arr)):
+            if arr[j] < minimum:
+                minimum = arr[j]
+                minimum_index = j
+            yield arr
+        fun_swap(arr, i, minimum_index)
+        yield arr
 
 
+def coctailSort(arr, start, end):
+    if len(arr) == 1:
+        return arr
+    
+    swapped = True
+    while swapped:
+        swapped = False
+        for i in range(start, end): 
+            if (arr[i] > arr[i + 1]) : 
+                fun_swap(arr, i, i+1)
+                swapped = True
+            yield arr
+            
+        if not swapped:
+            yield arr
+
+        swapped = False
+
+        end -= 1
+
+        for i in range(end-1, start-1, -1): 
+            if (arr[i] > arr[i + 1]): 
+                fun_swap(arr, i, i+1)
+                swapped = True
+                yield arr
+        
+        start = start + 1
 
 #Helping fucntions here 
 
@@ -98,7 +140,6 @@ def final_merge(arr,start, mid, end):
     for i, val in enumerate(merged):
         arr[start + i] = val
         yield arr
-
 
 
 def fun_swap(arr, i, j):
@@ -135,14 +176,14 @@ if __name__ == "__main__":
     text = ax.text( 0.03, 1, "", transform=ax.transAxes)
 
     iterations = [0]
-    animations = anim.FuncAnimation(
-        fig, func=next_frame, fargs=(bar_, iterations), 
-        frames=insertionSort(arr), interval = 10, repeat = False
-        ) #można odkomentować i sprobowac jak wyglada dla bubble
     """animations = anim.FuncAnimation(
         fig, func=next_frame, fargs=(bar_, iterations), 
-        frames=quickSort(arr, 0, number_of_int-1), interval = 10, repeat = False
-        )"""
+        frames=selectionSort(arr), interval = 10, repeat = False
+        ) #można odkomentować i sprobowac jak wyglada dla bubble"""
+    animations = anim.FuncAnimation(
+        fig, func=next_frame, fargs=(bar_, iterations), 
+        frames=coctailSort(arr, 0, number_of_int-1), interval = 10, repeat = False
+        )
     plt.show()
 
 

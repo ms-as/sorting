@@ -1,5 +1,5 @@
 # Visualization of six sorting algorithms 
-<p>Script made in python 3, to visualize 6 common knows algorithms:</p>
+Script made in python 3, to visualize 6 common knows algorithms:
 Bubble Sort,
 ![](Bubble_Sort.gif)
 Merge Sort,

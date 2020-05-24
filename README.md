@@ -3,7 +3,7 @@ Script made in python 3, to visualize 6 common knows algorithms:
 Bubble Sort,
 ![](Bubble_Sort.gif)
 Merge Sort,
-![](Merge\ sort.gif)
+![](Merge/ sort.gif)
 QuickSort,
 ![](QuickSort.gif)
 Insertion Sort,

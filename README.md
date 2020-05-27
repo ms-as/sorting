@@ -13,7 +13,7 @@ Selection Sort,<br>
 Coctail Sort.<br>
 ![](Coctail_Sort.gif)<br>
 <br>
-Requimens:<br>
+Requirements:<br>
 -Python 3.4<br>
 -numpy<br>
 -matplotlib<br>
